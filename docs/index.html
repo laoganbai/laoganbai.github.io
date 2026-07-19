@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-Safe安全中心 | 轻量化主动防御EDR工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", system-ui, sans-serif;
+        }
+        body {
+            color: #e6edf7;
+            background-color: #0f172a;
+            line-height: 1.7;
+        }
+        /* 导航栏 */
+        header {
+            background: #0b1220;
+            border-bottom: 1px solid #233554;
+            padding: 0 30px;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+        .nav-wrap {
+            max-width: 1240px;
+            margin: 0 auto;
+            height: 72px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #3b82f6;
+        }
+        .nav-menu a {
+            color: #b4c5e4;
+            text-decoration: none;
+            margin-left: 32px;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+        .nav-menu a:hover {
+            color: #3b82f6;
+        }
+        /* 首屏Banner */
+        .hero {
+            background: linear-gradient(150deg, #0f172a 0%, #16294d 100%);
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 24px;
+            color: #ffffff;
+        }
+        .hero h1 span {
+            color: #3b82f6;
+        }
+        .hero-desc {
+            max-width: 860px;
+            margin: 0 auto 40px;
+            font-size: 19px;
+            color: #b4c5e4;
+        }
+        .download-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .download-main {
+            display: inline-block;
+            background: #3b82f6;
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 18px 36px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(59,130,246,0.3);
+            min-width: 220px;
+        }
+        .download-main:hover {
+            background: #2563eb;
+            transform: translateY(-4px);
+            box-shadow: 0 0 30px rgba(59,130,246,0.45);
+        }
+        .download-git {
+            background: #24292f;
+        }
+        .download-code {
+            background: #059669;
+        }
+        .video-bilibili {
+            background: #fb7299;
+        }
+        /* 通用容器 */
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 70px 20px;
+        }
+        .sec-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: #ffffff;
+        }
+        .sec-title small {
+            display: block;
+            font-size: 16px;
+            color: #64748b;
+            margin-top: 8px;
+            font-weight: normal;
+        }
+        /* 产品定位板块 */
+        .position-box {
+            background: #152238;
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid #233554;
+        }
+        .position-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+            gap: 24px;
+        }
+        .pos-item {
+            display: flex;
+            gap: 14px;
+        }
+        .dot-blue {
+            width: 12px;
+            height: 12px;
+            background: #3b82f6;
+            border-radius: 50%;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+        /* v1.0更新卡片 */
+        .update-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 28px;
+        }
+        .card-dark {
+            background: #152238;
+            border: 1px solid #233554;
+            border-radius: 14px;
+            padding: 32px 26px;
+            transition: 0.3s;
+        }
+        .card-dark:hover {
+            border-color: #3b82f6;
+            transform: translateY(-6px);
+        }
+        .card-dark h3 {
+            font-size: 22px;
+            color: #3b82f6;
+            margin-bottom: 16px;
+        }
+        .card-dark ul {
+            padding-left: 18px;
+            color: #b4c5e4;
+        }
+        .card-dark li {
+            margin-bottom: 10px;
+        }
+        /* 三引擎联动 */
+        .engine-wrap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+            gap: 30px;
+        }
+        .engine-card {
+            background: linear-gradient(145deg, #182742, #121c30);
+            border-radius: 14px;
+            padding: 34px 24px;
+            border-left: 4px solid #3b82f6;
+        }
+        .engine-card h3 {
+            font-size: 22px;
+            margin-bottom: 14px;
+            color: #fff;
+        }
+        .engine-card p {
+            color: #a0b4d8;
+        }
+        /* 主动防御功能区 */
+        .func-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        @media (max-width: 820px) {
+            .func-two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* 底部 */
+        footer {
+            background: #0b1220;
+            border-top: 1px solid #233554;
+            padding: 45px 20px;
+            text-align: center;
+            color: #64748b;
+        }
+        footer p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航 -->
+    <header>
+        <div class="nav-wrap">
+            <div class="logo">X-Safe 安全中心</div>
+            <div class="nav-menu">
+                <a href="#intro">产品介绍</a>
+                <a href="#update">v1.0更新</a>
+                <a href="#engine">三引擎联动</a>
+                <a href="#defense">主动防御</a>
+                <a href="#download">下载&演示</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首屏 -->
+    <section class="hero" id="download">
+        <h1>X-Safe <span>安全中心</span>｜轻量化主动防御EDR工具</h1>
+        <p class="hero-desc">由竹影清风独立设计开发，新启年工作室联合出品，以「先隔离、再处置」为核心思路，融合特征查杀、本地AI行为评分、云端联动监控，普通用户即可拥有企业级终端检测响应防护能力</p>
+        <div class="download-box">
+            <a href="https://pan.gfwl.top/f/rBonid/XSafe_v29e_Setup.exe" target="_blank" class="download-main">EXE安装版</a>
+            <a href="https://pan.gfwl.top/f/dQAmI5/XSafe_v29e.7z" target="_blank" class="download-main">7z绿色压缩包</a>
+            <a href="https://pan.gfwl.top/f/pEXDfK/X-Safe-Security-Center.7z" target="_blank" class="download-main download-code">完整源码</a>
+            <a href="https://github.com/max257026-svg/X-Safe" target="_blank" class="download-main download-git">GitHub项目主页</a>
+            <a href="https://www.bilibili.com/video/BV1eTKK6WEN2/?spm_id_from=333.1007.top_right_bar_window_history.content.click" target="_blank" class="download-main video-bilibili">B站宣传片</a>
+        </div>
+    </section>
+
+    <!-- 产品定位 -->
+    <section class="container" id="intro">
+        <h2 class="sec-title">产品定位 <small>区别于传统商业杀毒，补齐行为可视与快速应急短板</small></h2>
+        <div class="position-box">
+            <div class="position-list">
+                <div class="pos-item">
+                    <span class="dot-blue"></span>
+                    <span>面向开发者、运维、安全爱好者、需要多层兜底防护的普通电脑用户</span>
+                </div>
+                <div class="pos-item">
+                    <span class="dot-blue"></span>
+                    <span>完全本地运行，不采集用户隐私、不上传本地个人文件</span>
+                </div>
+                <div class="pos-item">
+                    <span class="dot-blue"></span>
+                    <span>AI训练样本由用户自主反馈，无强制后台数据上传</span>
+                </div>
+                <div class="pos-item">
+                    <span class="dot-blue"></span>
+                    <span>不与商业杀毒软件竞争，作为第二层终端安全兜底防护</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- v1.0全新升级 -->
+    <section class="container" style="background:#121c30;" id="update">
+        <h2 class="sec-title">v1.0 全新升级特性</h2>
+        <div class="update-grid">
+            <div class="card-dark">
+                <h3>实时防护独立模块</h3>
+                <ul>
+                    <li>总开关+弹窗模式双控制</li>
+                    <li>六项子能力独立可调：注册表HOOK、引导区、进程行为、文件监控、卷影副本、自检</li>
+                </ul>
+            </div>
+            <div class="card-dark">
+                <h3>智能巡检与弹窗优化</h3>
+                <ul>
+                    <li>1秒时钟轮询自动巡检，新增威胁即时弹窗隔离</li>
+                    <li>批量威胁自动合并摘要弹窗，避免界面刷屏</li>
+                    <li>游戏/演示静默模式，全部弹窗静音仅留存日志</li>
+                </ul>
+            </div>
+            <div class="card-dark">
+                <h3>程序自保护机制</h3>
+                <ul>
+                    <li>程序本体与运行目录默认加入自保护白名单</li>
+                    <li>杜绝程序误杀自身PyInstaller运行依赖</li>
+                    <li>运行数据统一存储至%APPDATA%\XSafe，规避只读目录数据库报错</li>
+                </ul>
+            </div>
+            <div class="card-dark">
+                <h3>双主题自适应UI</h3>
+                <ul>
+                    <li>自动识别屏幕分辨率与DPI弹性缩放界面</li>
+                    <li>浅色/深色两套完整主题</li>
+                    <li>进程重启换肤，无控件闪烁卡顿</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 三引擎联动 -->
+    <section class="container" id="engine">
+        <h2 class="sec-title">三大检测引擎联动体系 <small>统一置信度评分，精准判定风险等级</small></h2>
+        <div class="engine-wrap">
+            <div class="engine-card">
+                <h3>特征引擎</h3>
+                <p>哈希黑名单、模式规则、YARA风格字符串匹配，覆盖挖矿、勒索、远控、WebShell等主流恶意样本家族，精准拦截已知威胁。</p>
+            </div>
+            <div class="engine-card">
+                <h3>本地AI引擎</h3>
+                <p>基于文件熵值、PE节区特征、API调用序列综合行为评分，可解释置信度判定，无黑盒误报；支持用户样本反馈持续迭代模型。</p>
+            </div>
+            <div class="engine-card">
+                <h3>云端联动引擎</h3>
+                <p>可疑样本哈希仅匿名上报云端，获取群体威胁标签；本地缓存查询结果，避免重复联网，兼顾检测能力与隐私安全。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主动防御核心能力 -->
+    <section class="container" style="background:#121c30;" id="defense">
+        <h2 class="sec-title">全维度主动防御能力</h2>
+        <div class="func-two-col">
+            <div class="card-dark">
+                <h3>系统底层行为监控</h3>
+                <ul>
+                    <li>注册表HOOK监控Run、IFEO、Winlogon、AppInit_DLLs等自启动项</li>
+                    <li>MBR/VBR引导区哈希快照，发现篡改立即告警溯源</li>
+                    <li>异常父子进程、DLL注入、批量加密文件等高危行为实时拦截</li>
+                    <li>Hosts、计划任务、SAM、卷影副本敏感路径写入监控</li>
+                </ul>
+            </div>
+            <div class="card-dark">
+                <h3>自检与勒索恢复体系</h3>
+                <ul>
+                    <li>一键自检：隔离区完整性、三引擎联动、系统基线健康巡检</li>
+                    <li>针对WannaCry、永恒之蓝家族痕迹检测，提供卷影副本恢复方案</li>
+                    <li>隔离沙箱完整留存所有威胁样本，误拦截文件一键还原</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer>
+        <p>X-Safe安全中心 © 2026 竹影清风 | 新启年工作室联合开发</p>
+        <p>项目开源协作：欢迎提交误报、漏报样本，助力AI引擎持续优化</p>
+        <p style="margin-top:16px;font-size:14px;color:#475569;">合规提示：本工具仅用于合法终端安全防护，禁止用于破坏、入侵他人计算机等违法活动</p>
+    </footer>
+</body>
+</html>
