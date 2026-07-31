@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="cursor-core" id="cursorCore" aria-hidden="true"></div>
 <div class="site-shell"><div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
 <header class="nav-wrap"><nav class="nav container"><a class="brand" href="#top"><span class="brand-mark">XS</span><span class="brand-copy"><strong>X-SAFE</strong><small>SECURITY CENTER</small></span></a><div class="nav-links" id="navLinks"><a href="#engines">检测引擎</a><a href="#defense">主动防御</a><a href="#upgrade">v1.0 特性</a><a target="_blank" href="https://max257026-svg.github.io/X-Safe/docs.html">开发文档</a></div><div class="nav-actions"><button class="icon-btn theme-btn" id="themeBtn" aria-label="切换主题">☼</button><a class="nav-github" target="_blank" href="https://github.com/max257026-svg/X-Safe">GitHub</a><button class="icon-btn menu-btn" id="menuBtn" aria-label="菜单">☰</button></div></nav></header>
 <main id="top">
@@ -21,11 +23,37 @@
 </div></div></section>
 <section id="defense" class="section container defense-section"><div class="section-heading center"><span class="section-kicker">FULL-SPECTRUM DEFENSE</span><h2>从启动项到引导区，<span>看住每个关键面</span></h2><p>系统底层行为实时监控、自检巡检、隔离恢复闭环联动。</p></div><div class="capability-grid">
 <article class="capability-card"><span class="cap-number">01</span><b class="mini-icon">⌁</b><h3>注册表 HOOK</h3><p>监控 Run、IFEO、Winlogon、AppInit_DLLs 等关键自启动项。</p><div class="cap-line"></div></article><article class="capability-card"><span class="cap-number">02</span><b class="mini-icon">▤</b><h3>引导区防护</h3><p>MBR / VBR 哈希快照，发现篡改立即告警并辅助溯源。</p><div class="cap-line"></div></article><article class="capability-card"><span class="cap-number">03</span><b class="mini-icon">⌁</b><h3>进程行为分析</h3><p>实时拦截异常父子进程、DLL 注入与批量文件加密行为。</p><div class="cap-line"></div></article><article class="capability-card"><span class="cap-number">04</span><b class="mini-icon">◎</b><h3>敏感路径监控</h3><p>持续监控 Hosts、计划任务、SAM 与卷影副本写入。</p><div class="cap-line"></div></article><article class="capability-card"><span class="cap-number">05</span><b class="mini-icon">↺</b><h3>勒索恢复体系</h3><p>检测 WannaCry、永恒之蓝家族痕迹，提供卷影恢复方案。</p><div class="cap-line"></div></article><article class="capability-card"><span class="cap-number">06</span><b class="mini-icon">▦</b><h3>隔离沙箱</h3><p>完整留存威胁样本，支持误拦截文件一键安全还原。</p><div class="cap-line"></div></article></div></section>
-<section id="upgrade" class="section upgrade-section"><div class="container upgrade-layout"><div class="upgrade-copy"><span class="version-badge">✦ V3.0 全新升级</span><h2>更主动，也更安静。<br><span>防护从不打扰开始。</span></h2><p>从实时模块解耦到智能合并弹窗，从程序自保护到双主题 UI，X-Safe v1.0 在防护效率和日常体验之间找到新平衡。</p><a class="text-link" target="_blank" href="https://max257026-svg.github.io/X-Safe/docs.html">查看完整开发文档 →</a></div><div class="upgrade-list"><article><div class="upgrade-icon">01</div><div><h3>实时防护独立模块</h3><p>总开关与弹窗模式双控制，注册表、引导区、进程、文件、卷影副本、自检六项能力均可独立调节。</p></div></article><article><div class="upgrade-icon">02</div><div><h3>智能巡检与弹窗优化</h3><p>1 秒时钟轮询巡检；威胁即时隔离；批量告警自动合并摘要；游戏与演示场景可一键静默。</p></div></article><article><div class="upgrade-icon">03</div><div><h3>程序自保护机制</h3><p>本体与运行目录默认加入自保护白名单，运行数据统一存储于 %APPDATA%\XSafe。</p></div></article><article><div class="upgrade-icon">04</div><div><h3>双主题自适应 UI</h3><p>自动识别分辨率与 DPI，浅色 / 深色主题完整适配，重启换肤无控件闪烁卡顿。</p></div></article></div></div></section>
+<section id="upgrade" class="section upgrade-section"><div class="container upgrade-layout"><div class="upgrade-copy"><span class="version-badge">✦ V1.0 全新升级</span><h2>更主动，也更安静。<br><span>防护从不打扰开始。</span></h2><p>从实时模块解耦到智能合并弹窗，从程序自保护到双主题 UI，X-Safe v1.0 在防护效率和日常体验之间找到新平衡。</p><a class="text-link" target="_blank" href="https://max257026-svg.github.io/X-Safe/docs.html">查看完整开发文档 →</a></div><div class="upgrade-list"><article><div class="upgrade-icon">01</div><div><h3>实时防护独立模块</h3><p>总开关与弹窗模式双控制，注册表、引导区、进程、文件、卷影副本、自检六项能力均可独立调节。</p></div></article><article><div class="upgrade-icon">02</div><div><h3>智能巡检与弹窗优化</h3><p>1 秒时钟轮询巡检；威胁即时隔离；批量告警自动合并摘要；游戏与演示场景可一键静默。</p></div></article><article><div class="upgrade-icon">03</div><div><h3>程序自保护机制</h3><p>本体与运行目录默认加入自保护白名单，运行数据统一存储于 %APPDATA%\XSafe。</p></div></article><article><div class="upgrade-icon">04</div><div><h3>双主题自适应 UI</h3><p>自动识别分辨率与 DPI，浅色 / 深色主题完整适配，重启换肤无控件闪烁卡顿。</p></div></article></div></div></section>
 <section class="section container open-source"><div class="code-panel"><div class="code-copy"><span class="section-kicker">OPEN SOURCE COLLABORATION</span><h2>安全，不该是黑盒。</h2><p>项目完整开源。欢迎提交误报、漏报样本与规则改进建议，和我们一起持续优化本地 AI 引擎。</p><div class="code-actions"><a class="btn primary" target="_blank" href="https://github.com/max257026-svg/X-Safe">前往 GitHub</a><a class="btn ghost" href="https://pan.gfwl.top/f/pEXDfK/X-Safe-Security-Center.7z">下载完整源码</a></div></div><div class="terminal-card"><div class="terminal-bar"><span><i></i><i></i><i></i></span><small>x-safe — project</small></div><div class="terminal-content"><p><b>$</b> x-safe --status</p><p><span>project</span> X-Safe Security Center</p><p><span>mode</span> local-first / open-source</p><p><span>strategy</span> isolate-before-response</p><p><span>privacy</span> <em>✓ no personal file upload</em></p><p class="cursor-line"><b>$</b> <i></i></p></div></div></div></section>
 <section class="final-cta container"><div class="cta-glow"></div><b class="big-shield">⬡</b><span class="section-kicker">READY TO DEFEND</span><h2>给 Windows 再加一道安全防线</h2><p>轻量、主动、可解释。免费下载 X-Safe，开始本地化终端防护。</p><div class="hero-actions centered"><a class="btn primary" href="https://pan.gfwl.top/f/rBonid/XSafe_v29e_Setup.exe">↓ 下载 EXE 安装版</a><a class="btn secondary" href="https://pan.gfwl.top/f/dQAmI5/XSafe_v29e.7z">获取绿色版</a></div></section>
 </main>
 <footer><div class="container footer-main"><div class="brand footer-brand"><span class="brand-mark">XS</span><span class="brand-copy"><strong>X-SAFE</strong><small>SECURITY CENTER</small></span></div><div class="footer-links"><a href="https://pan.gfwl.top/f/rBonid/XSafe_v29e_Setup.exe">EXE 安装版</a><a href="https://pan.gfwl.top/f/dQAmI5/XSafe_v29e.7z">绿色压缩包</a><a href="https://pan.gfwl.top/f/pEXDfK/X-Safe-Security-Center.7z">完整源码</a><a target="_blank" href="https://github.com/max257026-svg/X-Safe">GitHub ↗</a><a target="_blank" href="https://www.bilibili.com/video/BV1eTKK6WEN2/?spm_id_from=333.1007.top_right_bar_window_history.content.click">宣传片 ↗</a><a target="_blank" href="https://max257026-svg.github.io/X-Safe/docs.html">开发文档 ↗</a></div></div><div class="container footer-bottom"><p>X-Safe 安全中心 © 2026 竹影清风｜新启年工作室联合开发</p><p>合规提示：本工具仅用于合法终端安全防护，禁止用于破坏、入侵他人计算机等违法活动。</p></div></footer>
 </div>
-<script>const root=document.documentElement,theme=document.getElementById('themeBtn'),menu=document.getElementById('menuBtn'),links=document.getElementById('navLinks');theme.onclick=()=>{const d=root.dataset.theme==='dark';root.dataset.theme=d?'light':'dark';theme.textContent=d?'◐':'☼'};menu.onclick=()=>links.classList.toggle('open');links.querySelectorAll('a').forEach(a=>a.onclick=()=>links.classList.remove('open'));</script>
+<script>
+const root=document.documentElement,theme=document.getElementById('themeBtn'),menu=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+theme.onclick=()=>{const d=root.dataset.theme==='dark';root.dataset.theme=d?'light':'dark';theme.textContent=d?'◐':'☼'};
+menu.onclick=()=>links.classList.toggle('open');
+links.querySelectorAll('a').forEach(a=>a.onclick=()=>links.classList.remove('open'));
+
+const glow=document.getElementById('cursorGlow'),core=document.getElementById('cursorCore');
+if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+  let targetX=innerWidth/2,targetY=innerHeight/2,glowX=targetX,glowY=targetY,visible=false;
+  addEventListener('pointermove',event=>{
+    targetX=event.clientX;targetY=event.clientY;
+    if(!visible){visible=true;glow.classList.add('visible');core.classList.add('visible')}
+    core.style.transform=`translate3d(${targetX}px,${targetY}px,0) translate(-50%,-50%)`;
+  },{passive:true});
+  addEventListener('pointerout',event=>{if(!event.relatedTarget){visible=false;glow.classList.remove('visible');core.classList.remove('visible')}},{passive:true});
+  const render=()=>{
+    glowX+=(targetX-glowX)*.14;glowY+=(targetY-glowY)*.14;
+    glow.style.transform=`translate3d(${glowX}px,${glowY}px,0) translate(-50%,-50%)`;
+    requestAnimationFrame(render);
+  };
+  render();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('pointerenter',()=>{glow.classList.add('interactive');core.classList.add('interactive')});
+    el.addEventListener('pointerleave',()=>{glow.classList.remove('interactive');core.classList.remove('interactive')});
+  });
+}
+</script>
 </body></html>
